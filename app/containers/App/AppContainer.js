@@ -1,10 +1,11 @@
 import React, { PropTypes, Component } from 'react'
 import { View } from 'react-native'
 import { ReactModoroNavigator } from '~/containers'
+import { PreSplash } from '~/components'
 
 export default class AppContainer extends Component {
   static propTypes = {
-    isAuthenticating: PropTypes.bool.isrequired
+    isAuthenticating: PropTypes.bool.isRequired,
   }
 
   static defaultProps = {
@@ -13,7 +14,11 @@ export default class AppContainer extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <ReactModoroNavigator />
+        {
+          this.props.isAuthenticating === true
+            ? <PreSplash/>
+            : <ReactModoroNavigator />
+        }
       </View>
     )
   }
